@@ -1,0 +1,93 @@
+package br.com.value.projects.dominio;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Aluno {
+
+	private int id ;
+	private static int proximoId=1; 
+	private String nome, cpf, sexo;
+    private List<Trilha> ListaTrilhasInscrita;
+
+	public Aluno(String nome, String cpf, String sexo) {
+		this.nome = nome;
+		this.cpf = cpf;
+		this.sexo= sexo;
+		this.id = proximoId++;
+		this.ListaTrilhasInscrita = new ArrayList<Trilha>();
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+        this.id = id;
+    }
+
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String nome) {
+        this.nome = nome;
+    }
+	
+	public String getSexo() {
+		return sexo;
+	}
+	
+	public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+	
+	public String getCpf() {
+		return cpf;
+	}
+	
+	public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+	public void modificarAluno(Aluno aluno) {
+        this.nome = aluno.nome;
+        this.cpf = aluno.cpf;
+        this.sexo = aluno.sexo;
+    }
+	
+	
+	
+	 public void inscreverNaTrilha(Trilha trilha) {
+	        if (!ListaTrilhasInscrita.contains(trilha)) {
+	        	ListaTrilhasInscrita.add(trilha);
+	            trilha.inscreverAluno(this);
+	        }
+	    }
+
+	    public List<Trilha> getTrilhasInscritas() {
+	        return ListaTrilhasInscrita;
+	    }
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Aluno other = (Aluno) obj;
+		if (id != other.id)
+			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		return true;
+	}
+	
+	
+}
