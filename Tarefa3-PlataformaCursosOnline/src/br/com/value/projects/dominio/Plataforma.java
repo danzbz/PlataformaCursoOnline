@@ -44,4 +44,19 @@ public class Plataforma {
         System.out.println("Trilha '" + nomeTrilha + "' não encontrada.");
     }
     
+    public double buscaTrilhaPorNome(String nomeTrilha) {
+        Iterator<Trilha> iterator = ListaTrilha.iterator();
+        while (iterator.hasNext()) {
+            Trilha trilha = iterator.next();
+            if (trilha.getNome().equals(nomeTrilha)) {
+            	
+                System.out.println("Trilha '" + nomeTrilha + "' FOI encontrada.");
+                return 1.0;
+            }
+            
+        }        
+        System.out.println("Trilha '" + nomeTrilha + "' NAO encontrada.");
+        return 0.0;
+    }
 }
+
